@@ -51,8 +51,8 @@ function creatDraw(content) {
 
   const img = new Image();
   const logo = new Image();
-  img.src = `../images/template${content.template}.svg`;
-  logo.src = `../images/hexschool_logo.svg`;
+  img.src = `./images/template${content.template}.svg`;
+  logo.src = `./images/hexschool_logo.svg`;
   img.onload = function () {
     ctx.fillStyle = 'white';
     ctx.fillRect(0,0, c1.width , c1.height);
