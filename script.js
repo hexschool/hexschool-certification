@@ -59,53 +59,58 @@ function creatDraw(content) {
 
     ctx.drawImage(img, 0, 0, 843, 596)
     logo.onload = function () {
-  
-      // x 位置統一
-      let xPosition = 124;
-      let fontFamily = "'Noto Sans TC', sans-serif";
-      let colorDark = "rgba(0, 37, 36, 1)";
-      let colorBlack = "rgba(0, 0, 0, 1)";
-      // 課程名稱
+      const junction_font = new FontFace('Noto Sans TC', 'url(./font/NotoSansTC-Regular.otf)');
+      junction_font.load().then(function(loaded_face) {
+        // x 位置統一
+        let xPosition = 124;
+        let fontFamily = loaded_face.family;
+        let colorDark = "rgba(0, 37, 36, 1)";
+        let colorBlack = "rgba(0, 0, 0, 1)";
+        // 課程名稱
+        
+        let yStart = 205;
+        ctx.textAlign = "left";
+        ctx.font = `24px ${fontFamily}`;
+        ctx.fillStyle = colorDark;
+        ctx.fillText(`${content.course_name}`, xPosition, yStart);
+
+        ctx.textAlign = "left";
+        ctx.font = `24px ${fontFamily}`;
+        ctx.fillStyle = colorDark;
+        ctx.fillText(`完課證書`, xPosition, yStart + 32);
+
+        ctx.beginPath();
+        ctx.moveTo(xPosition, yStart + 32 + 24);
+        ctx.lineTo(xPosition + 350, yStart + 32 + 24);
+        ctx.strokeStyle = colorDark;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.font = `31px ${fontFamily}`;
+        ctx.fillStyle = "black";
+        ctx.fillText(`${content.student}`, xPosition, 318);
+
+        ctx.font = `16px ${fontFamily}`;
+        ctx.fillStyle = colorBlack;
+        ctx.fillText(`${content.content}`, xPosition, 318 + 42)
+        
+        ctx.font = `16px ${fontFamily}`;
+        ctx.fillStyle = colorBlack;
+        ctx.fillText(`特頒此證 以茲證明`, xPosition, 318 + 42 + 24)
+
+        ctx.drawImage(logo, xPosition - 6, 424, 114, 40);
+
+        ctx.font = `14px ${fontFamily}`;
+        ctx.fillStyle = colorBlack;
+        ctx.fillText(`授課老師 ${content.teacher}`, xPosition, 473)
+
+        ctx.font = `14px ${fontFamily}`;
+        ctx.fillStyle = colorBlack;
+        ctx.fillText(`${content.date.split('T')[0]}`, xPosition + 529, 473)
+      }).catch(function(error) {
+        // error occurred
+      });
       
-      let yStart = 205;
-      ctx.textAlign = "left";
-      ctx.font = `24px ${fontFamily}`;
-      ctx.fillStyle = colorDark;
-      ctx.fillText(`${content.course_name}`, xPosition, yStart);
-
-      ctx.textAlign = "left";
-      ctx.font = `24px ${fontFamily}`;
-      ctx.fillStyle = colorDark;
-      ctx.fillText(`完課證書`, xPosition, yStart + 32);
-
-      ctx.beginPath();
-      ctx.moveTo(xPosition, yStart + 32 + 24);
-      ctx.lineTo(xPosition + 350, yStart + 32 + 24);
-      ctx.strokeStyle = colorDark;
-      ctx.lineWidth = 2;
-      ctx.stroke();
-
-      ctx.font = `31px ${fontFamily}`;
-      ctx.fillStyle = "black";
-      ctx.fillText(`${content.student}`, xPosition, 318);
-
-      ctx.font = `16px ${fontFamily}`;
-      ctx.fillStyle = colorBlack;
-      ctx.fillText(`${content.content}`, xPosition, 318 + 42)
-      
-      ctx.font = `16px ${fontFamily}`;
-      ctx.fillStyle = colorBlack;
-      ctx.fillText(`特頒此證 以茲證明`, xPosition, 318 + 42 + 24)
-
-      ctx.drawImage(logo, xPosition - 6, 424, 114, 40);
-
-      ctx.font = `14px ${fontFamily}`;
-      ctx.fillStyle = colorBlack;
-      ctx.fillText(`授課老師 ${content.teacher}`, xPosition, 473)
-
-      ctx.font = `14px ${fontFamily}`;
-      ctx.fillStyle = colorBlack;
-      ctx.fillText(`${content.date.split('T')[0]}`, xPosition + 529, 473)
     }
   }
 }
