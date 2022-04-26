@@ -77,7 +77,7 @@ function creatDraw(content) {
         ctx.textAlign = "left";
         ctx.font = `24px ${fontFamily}`;
         ctx.fillStyle = colorDark;
-        ctx.fillText(`完課證書`, xPosition, yStart + 32);
+        ctx.fillText(`${content.title}`, xPosition, yStart + 32);
 
         ctx.beginPath();
         ctx.moveTo(xPosition, yStart + 32 + 24);
@@ -106,7 +106,7 @@ function creatDraw(content) {
 
         ctx.font = `14px ${fontFamily}`;
         ctx.fillStyle = colorBlack;
-        ctx.fillText(`${content.date.split('T')[0]}`, xPosition + 529, 473)
+        ctx.fillText(`${content.issue_date.split('T')[0]}`, xPosition + 529, 473)
       }).catch(function(error) {
         // error occurred
       });
